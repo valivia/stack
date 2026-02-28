@@ -26,6 +26,7 @@ grow_vertical = 2
 texture = ExtResource("3_1eg8k")
 
 [node name="Leaderboard" type="VBoxContainer" parent="." unique_id=1288935226]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5

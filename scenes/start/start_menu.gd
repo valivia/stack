@@ -1,9 +1,9 @@
 extends Control
 
-@onready var leaderboard = $Leaderboard
-@onready var highscoreList = $Leaderboard/Highscores
-@onready var playerName = $VBoxContainer2/VBoxContainer/LineEdit
-@onready var quit = $VBoxContainer2/VBoxContainer/quit
+@onready var leaderboard = $Leaderboard;
+@onready var highscoreList = $Leaderboard/Highscores;
+@onready var playerName = $Main/VBoxContainer/LineEdit;
+@onready var quit = $Main/VBoxContainer/quit;
 
 const GAME_SCENE = preload("uid://dasro6j817sjn")
 
