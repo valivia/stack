@@ -26,15 +26,14 @@ grow_vertical = 2
 texture = ExtResource("3_1eg8k")
 
 [node name="Leaderboard" type="VBoxContainer" parent="." unique_id=1288935226]
-visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 18.0
-offset_top = -219.0
+offset_top = -174.0
 offset_right = 295.0
-offset_bottom = 179.0
+offset_bottom = 224.0
 grow_vertical = 2
 metadata/_edit_group_ = true
 
@@ -50,7 +49,7 @@ theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "test"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=856140698]
+[node name="Main" type="VBoxContainer" parent="." unique_id=856140698]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,48 +57,49 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -216.5
-offset_top = -255.0
+offset_top = -204.0
 offset_right = 216.5
-offset_bottom = 173.0
+offset_bottom = 224.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer2" unique_id=217237444]
+[node name="Label" type="Label" parent="Main" unique_id=217237444]
 layout_mode = 2
 theme_override_font_sizes/font_size = 96
 text = "Box Stacking"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="VBoxContainer2" unique_id=1405754465]
+[node name="Control" type="Control" parent="Main" unique_id=1405754465]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2" unique_id=259478061]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main" unique_id=259478061]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer" unique_id=92285243]
+[node name="LineEdit" type="LineEdit" parent="Main/VBoxContainer" unique_id=92285243]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oeh0t")
 placeholder_text = "Name"
 alignment = 1
-max_length = 24
+max_length = 10
 
-[node name="start" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=1580133020]
+[node name="start" type="Button" parent="Main/VBoxContainer" unique_id=1580133020]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oeh0t")
 text = "Start"
 
-[node name="settings" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=900493857]
+[node name="settings" type="Button" parent="Main/VBoxContainer" unique_id=900493857]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oeh0t")
 text = "Settings"
 
-[node name="quit" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=1019170707]
+[node name="quit" type="Button" parent="Main/VBoxContainer" unique_id=1019170707]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oeh0t")
 text = "Quit Game"
 
-[connection signal="pressed" from="VBoxContainer2/VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer2/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/quit" to="." method="_on_quit_pressed"]
