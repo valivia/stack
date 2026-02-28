@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b75eev621m460"]
+
+[ext_resource type="Script" uid="uid://dnnf31ro0ttei" path="res://scenes/main/boxes/box.gd" id="1_m3f0e"]
+[ext_resource type="PhysicsMaterial" uid="uid://c5tug4r432jwk" path="res://scenes/main/boxes/box_physics.tres" id="1_qi7wc"]
+[ext_resource type="Texture2D" uid="uid://d3lfh5yb6v54j" path="res://assets/sprites/box.png" id="3_jlt80"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuonh"]
+size = Vector2(32, 32)
+
+[node name="Box" type="RigidBody2D" unique_id=114154577 node_paths=PackedStringArray("sprite", "collision", "visible_notifier")]
+physics_material_override = ExtResource("1_qi7wc")
+freeze = true
+max_contacts_reported = 1
+script = ExtResource("1_m3f0e")
+sprite = NodePath("Sprite2D")
+collision = NodePath("CollisionShape2D")
+visible_notifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1881061452]
+shape = SubResource("RectangleShape2D_iuonh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2142588260]
+self_modulate = Color(0.3718678, 0.56839645, 0.45408028, 1)
+texture_filter = 1
+texture = ExtResource("3_jlt80")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1043948547]
+rect = Rect2(-16, -16, 32, 32)

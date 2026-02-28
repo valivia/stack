@@ -1,0 +1,257 @@
+[gd_scene format=3 uid="uid://dasro6j817sjn"]
+
+[ext_resource type="Script" uid="uid://c4rclbfpid3vn" path="res://scenes/main/script/main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://stys4a2nshxn" path="res://scenes/main/script/camera.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://dn21op0uoujb2" path="res://assets/pillar.png" id="2_b1x3f"]
+[ext_resource type="Texture2D" uid="uid://c7pbyj1f8mfmi" path="res://assets/platform.png" id="2_yyfjg"]
+[ext_resource type="Script" uid="uid://dpgjra0u8apip" path="res://scenes/main/script/spawner.gd" id="3_k2fmo"]
+[ext_resource type="Script" uid="uid://s8lddopiivg3" path="res://scenes/main/kill_zone.gd" id="4_hujxm"]
+[ext_resource type="Script" uid="uid://d2fb5ey4x01hs" path="res://scenes/main/script/score.gd" id="4_l3cfh"]
+[ext_resource type="Script" uid="uid://ck5q0ucfquv72" path="res://scenes/main/script/game_menu.gd" id="5_6q06x"]
+[ext_resource type="Theme" uid="uid://b5w3siswdnjiw" path="res://assets/theme.tres" id="6_yyfjg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(255, 32)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ig7tw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0xm2m"]
+width = 10
+height = 20
+noise = SubResource("FastNoiseLite_ig7tw")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(2000, 85.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3cfh"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_hujxm"]
+font_size = 32
+font_color = Color(0.66656864, 0.6665687, 0.66656864, 1)
+
+[sub_resource type="Gradient" id="Gradient_k2fmo"]
+colors = PackedColorArray(0.050587997, 0.106813125, 0.076509945, 1, 0.5099855, 0.45414025, 0.6956521, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l3cfh"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6q06x"]
+width = 1024
+noise = SubResource("FastNoiseLite_l3cfh")
+color_ramp = SubResource("Gradient_k2fmo")
+
+[node name="Main" type="Node2D" unique_id=2030157820]
+script = ExtResource("1_0xm2m")
+
+[node name="Platform" type="StaticBody2D" parent="." unique_id=1918655571]
+position = Vector2(0, 16)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1823542099]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="PillarSprite" type="Sprite2D" parent="Platform" unique_id=1793947690]
+texture_filter = 1
+position = Vector2(0, 41)
+scale = Vector2(2, 2)
+texture = ExtResource("2_b1x3f")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform" unique_id=1197684895]
+texture_filter = 1
+position = Vector2(0, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("2_yyfjg")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=904686441]
+position = Vector2(0, -19)
+zoom = Vector2(3, 3)
+script = ExtResource("1_ig7tw")
+
+[node name="Spawner" type="Marker2D" parent="Camera" unique_id=1593577961]
+position = Vector2(0, -143)
+script = ExtResource("3_k2fmo")
+
+[node name="pointer" type="Sprite2D" parent="Camera/Spawner" unique_id=139189009]
+position = Vector2(0, -10)
+texture = SubResource("NoiseTexture2D_0xm2m")
+
+[node name="kill_zone" type="Area2D" parent="Camera" unique_id=732083735]
+position = Vector2(0, 233)
+script = ExtResource("4_hujxm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/kill_zone" unique_id=1116687049]
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Tower" type="Node2D" parent="." unique_id=1672440339]
+unique_name_in_owner = true
+position = Vector2(-1, -64)
+
+[node name="Score" type="Label" parent="." unique_id=363365681]
+unique_name_in_owner = true
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -8.0
+offset_right = -138.0
+offset_bottom = 8.0
+grow_vertical = 2
+theme = ExtResource("6_yyfjg")
+theme_override_font_sizes/font_size = 12
+text = "0.00 M"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("4_l3cfh")
+
+[node name="ColorRect" type="ColorRect" parent="Score" unique_id=1762154085]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 297.0
+offset_bottom = 8.0
+color = Color(0.6328754, 0.468337, 0.37570035, 0.7019608)
+
+[node name="Menu" type="CanvasLayer" parent="." unique_id=1415641545 node_paths=PackedStringArray("title_label", "score_label")]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+script = ExtResource("5_6q06x")
+title_label = NodePath("CenterContainer/VBoxContainer/Title")
+score_label = NodePath("CenterContainer/VBoxContainer/Score")
+
+[node name="ColorRect" type="ColorRect" parent="Menu" unique_id=324859635]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 0.44705883)
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu" unique_id=733068386]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.5
+offset_top = -216.5
+offset_right = 217.5
+offset_bottom = 216.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer" unique_id=301171088]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Menu/CenterContainer/VBoxContainer" unique_id=232791659]
+layout_mode = 2
+theme = ExtResource("6_yyfjg")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 64
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="Menu/CenterContainer/VBoxContainer" unique_id=322584686]
+layout_mode = 2
+theme = ExtResource("6_yyfjg")
+theme_override_font_sizes/font_size = 32
+text = "0.0"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/CenterContainer/VBoxContainer" unique_id=1502272575]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Main Menu" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer2" unique_id=1495230654]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Restart" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer2" unique_id=1926195377]
+layout_mode = 2
+text = "Restart"
+
+[node name="Menu" type="CanvasLayer" parent="Menu" unique_id=196213496 node_paths=PackedStringArray("title_label", "score_label")]
+process_mode = 3
+visible = false
+script = ExtResource("5_6q06x")
+title_label = NodePath("CenterContainer/VBoxContainer/Title")
+score_label = NodePath("CenterContainer/VBoxContainer/Score")
+
+[node name="ColorRect" type="ColorRect" parent="Menu/Menu" unique_id=202104180]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 0.44705883)
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu/Menu" unique_id=477754317]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.5
+offset_top = -216.5
+offset_right = 217.5
+offset_bottom = 216.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Menu/CenterContainer" unique_id=787113342]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Menu/Menu/CenterContainer/VBoxContainer" unique_id=1611870599]
+layout_mode = 2
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_l3cfh")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="Menu/Menu/CenterContainer/VBoxContainer" unique_id=1606591507]
+layout_mode = 2
+text = "0.0"
+label_settings = SubResource("LabelSettings_hujxm")
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Menu/CenterContainer/VBoxContainer" unique_id=737222193]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Main Menu" type="Button" parent="Menu/Menu/CenterContainer/VBoxContainer/VBoxContainer2" unique_id=1584258989]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Restart" type="Button" parent="Menu/Menu/CenterContainer/VBoxContainer/VBoxContainer2" unique_id=2144001741]
+layout_mode = 2
+text = "Restart"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1328580248]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2" unique_id=238421100]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_6q06x")
+
+[connection signal="game_restarted" from="." to="Camera" method="_on_game_restarted"]
+[connection signal="height_changed" from="." to="Camera" method="_on_height_changed"]
+[connection signal="height_changed" from="." to="Score" method="_on_height_changed"]
+[connection signal="height_changed" from="." to="Menu" method="_on_height_changed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer2/Main Menu" to="Menu" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer2/Restart" to="Menu" method="_on_restart_pressed"]
+[connection signal="pressed" from="Menu/Menu/CenterContainer/VBoxContainer/VBoxContainer2/Main Menu" to="Menu/Menu" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Menu/Menu/CenterContainer/VBoxContainer/VBoxContainer2/Restart" to="Menu/Menu" method="_on_restart_pressed"]

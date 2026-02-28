@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dasro6j817sjn"]
+
+[ext_resource type="Script" uid="uid://c4rclbfpid3vn" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://stys4a2nshxn" path="res://camera_2d.gd" id="1_ig7tw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(400, 20)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h2yge"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1bvp3"]
+width = 400
+height = 20
+noise = SubResource("FastNoiseLite_h2yge")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ig7tw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0xm2m"]
+width = 4
+height = 10
+noise = SubResource("FastNoiseLite_ig7tw")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(2000, 100)
+
+[node name="Main" type="Node2D" unique_id=2030157820]
+script = ExtResource("1_0xm2m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1918655571]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1823542099]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1197684895]
+texture = SubResource("NoiseTexture2D_1bvp3")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=904686441]
+offset = Vector2(0, -80)
+zoom = Vector2(2, 2)
+script = ExtResource("1_ig7tw")
+
+[node name="Spawner" type="Marker2D" parent="Camera" unique_id=1593577961]
+position = Vector2(0, -189)
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera/Spawner" unique_id=139189009]
+position = Vector2(0, -5)
+texture = SubResource("NoiseTexture2D_0xm2m")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=732083735]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1116687049]
+position = Vector2(0, 132.5)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[connection signal="area_entered" from="Area2D" to="." method="death_zone_entered"]

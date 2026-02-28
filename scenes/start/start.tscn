@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://dlnragyap6elg"]
+
+[ext_resource type="Script" uid="uid://dh86ksm5ijrvw" path="res://scenes/start/start_menu.gd" id="1_662lp"]
+[ext_resource type="Theme" uid="uid://b5w3siswdnjiw" path="res://assets/theme.tres" id="1_ae20m"]
+[ext_resource type="FontFile" uid="uid://b1jxr28wtp5ee" path="res://assets/Jersey10-Regular.ttf" id="2_oeh0t"]
+[ext_resource type="Texture2D" uid="uid://do4c7yu0kc1kl" path="res://assets/noise.tres" id="3_1eg8k"]
+
+[node name="Start" type="Control" unique_id=271050761]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ae20m")
+script = ExtResource("1_662lp")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=530192815]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1eg8k")
+
+[node name="Leaderboard" type="VBoxContainer" parent="." unique_id=1288935226]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -219.0
+offset_right = 295.0
+offset_bottom = 179.0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Leaderboard" unique_id=2116088621]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Leaderboard"
+
+[node name="Highscores" type="RichTextLabel" parent="Leaderboard" unique_id=4534927]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "test"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=856140698]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.5
+offset_top = -255.0
+offset_right = 216.5
+offset_bottom = 173.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2" unique_id=217237444]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Box Stacking"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer2" unique_id=1405754465]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2" unique_id=259478061]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer" unique_id=92285243]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oeh0t")
+placeholder_text = "Name"
+alignment = 1
+max_length = 24
+
+[node name="start" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=1580133020]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oeh0t")
+text = "Start"
+
+[node name="settings" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=900493857]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oeh0t")
+text = "Settings"
+
+[node name="quit" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=1019170707]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oeh0t")
+text = "Quit Game"
+
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/quit" to="." method="_on_quit_pressed"]
