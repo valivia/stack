@@ -26,6 +26,9 @@ func _ready():
 	sprite.scale = new_scale;
 	self.mass = scaling_factor;
 	
+	# Randomized rotation
+	self.rotate(deg_to_rad(snapped(randi_range(0, 270), 90)));
+	
 	# Physics
 	self.freeze = true;
 	self.collision_layer = 0;
@@ -51,7 +54,7 @@ func _physics_process(delta):
 		settled.emit(height);
 		set_physics_process(false);
 
-func on_hit(body: Node2D):
+func on_hit(_body: Node2D):
 	call_deferred("set_contact_monitor", false);
 	first_hit.emit();
 
