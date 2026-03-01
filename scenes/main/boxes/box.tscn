@@ -7,14 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iuonh"]
 size = Vector2(32, 32)
 
-[node name="Box" type="RigidBody2D" unique_id=114154577 node_paths=PackedStringArray("sprite", "collision", "visible_notifier")]
+[node name="Box" type="RigidBody2D" unique_id=114154577 node_paths=PackedStringArray("sprite", "collision")]
 physics_material_override = ExtResource("1_qi7wc")
 freeze = true
 max_contacts_reported = 1
 script = ExtResource("1_m3f0e")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
-visible_notifier = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1881061452]
 shape = SubResource("RectangleShape2D_iuonh")
@@ -23,6 +22,3 @@ shape = SubResource("RectangleShape2D_iuonh")
 self_modulate = Color(0.3718678, 0.56839645, 0.45408028, 1)
 texture_filter = 1
 texture = ExtResource("3_jlt80")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1043948547]
-rect = Rect2(-16, -16, 32, 32)

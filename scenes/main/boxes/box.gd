@@ -2,7 +2,6 @@ extends RigidBody2D
 
 @export var sprite:Sprite2D;
 @export var collision:CollisionShape2D;
-@export var visible_notifier:VisibleOnScreenNotifier2D;
 
 signal settled(height: float);
 signal first_hit();
@@ -39,7 +38,6 @@ func _ready():
 	sprite.self_modulate = Color.from_ok_hsl(randf(), 0.25, 0.55);
 	
 	# Signals
-	visible_notifier.screen_exited.connect(on_screen_exited);
 	self.body_entered.connect(on_hit);
 
 func _physics_process(delta):
@@ -85,7 +83,6 @@ func get_highest_point() -> float:
 
 	return min_y
 
-# Signals
-func on_screen_exited():
+func on_enter_freeze_zone():
 	if self.linear_velocity.length() > VELOCITY_THRESHOLD: return;
-	self.freeze = true;
+	set_deferred("freeze", true);

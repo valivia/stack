@@ -3,6 +3,7 @@ extends Marker2D
 @onready var main = $"../.."
 @onready var tower:Node2D = %Tower;
 @onready var timer = $Timer
+@onready var freeze_zone = $"../freeze_zone"
 
 # Boxes
 const BOX = preload("uid://b75eev621m460")
