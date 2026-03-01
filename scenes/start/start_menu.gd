@@ -21,10 +21,8 @@ func load_highscores():
 	else:
 		leaderboard.visible = true;
 
-	var rank = 0;
 	var players = "";
 	for player in highscores:
-		rank += 1;
 		players += "%s: %.1f\n" % [player.name, player.score];
 	highscoreList.text = "[ol]%s[/ol]" % players
 

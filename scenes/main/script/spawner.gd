@@ -22,7 +22,7 @@ func _unhandled_input(event: InputEvent):
 	if event.is_action_pressed("rotate"):
 		if box: box.rotation_degrees += 90;
 
-func on_settled(height):
+func on_settled(_height):
 	spawn_new_box();
 
 func spawn_new_box():

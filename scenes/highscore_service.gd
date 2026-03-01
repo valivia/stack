@@ -16,7 +16,6 @@ static func score_from_height(height: float):
 
 static func upsert_highscore(name: String, score: float) -> void:
 	var highscores := get_highscore_dict();
-	
 	if name.length() <= 2:
 		return;
 
@@ -50,7 +49,6 @@ static func get_highscore_dict() -> Dictionary:
 	data = JSON.parse_string(data);
 	file.close();
 
-	print(data);
 	if typeof(data) == TYPE_DICTIONARY:
 		return data;
 

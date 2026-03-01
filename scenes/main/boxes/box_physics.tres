@@ -2,6 +2,5 @@
 
 [resource]
 resource_local_to_scene = true
-friction = 5.0
-bounce = 10.0
+friction = 4.0
 absorbent = true

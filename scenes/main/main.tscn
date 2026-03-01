@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c4rclbfpid3vn" path="res://scenes/main/script/main.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://stys4a2nshxn" path="res://scenes/main/script/camera.gd" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://bjoepymmv1xlp" path="res://scenes/main/script/platform.gd" id="2_a8run"]
 [ext_resource type="Texture2D" uid="uid://dn21op0uoujb2" path="res://assets/sprites/pillar.png" id="2_b1x3f"]
 [ext_resource type="Texture2D" uid="uid://c7pbyj1f8mfmi" path="res://assets/sprites/platform.png" id="2_yyfjg"]
 [ext_resource type="Script" uid="uid://dpgjra0u8apip" path="res://scenes/main/script/spawner.gd" id="3_k2fmo"]
@@ -11,7 +10,7 @@
 [ext_resource type="Script" uid="uid://ck5q0ucfquv72" path="res://scenes/main/script/game_menu.gd" id="5_6q06x"]
 [ext_resource type="Theme" uid="uid://b5w3siswdnjiw" path="res://assets/theme.tres" id="6_yyfjg"]
 [ext_resource type="Texture2D" uid="uid://bjihba5sqaf4o" path="res://assets/sprites/dropper.png" id="7_ouso4"]
-[ext_resource type="Script" uid="uid://cxxtr35dpi1u4" path="res://scenes/main/freeze_zone.gd" id="8_th5th"]
+[ext_resource type="Script" uid="uid://cxxtr35dpi1u4" path="res://scenes/main/script/freeze_zone.gd" id="8_th5th"]
 [ext_resource type="Texture2D" uid="uid://do4c7yu0kc1kl" path="res://assets/noise.tres" id="12_blune"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
@@ -31,12 +30,10 @@ normal = Vector2(-1, 0)
 distance = -175.0
 
 [node name="Main" type="Node2D" unique_id=2030157820]
-position = Vector2(0, -1)
 script = ExtResource("1_0xm2m")
 
 [node name="Platform" type="StaticBody2D" parent="." unique_id=1918655571]
 collision_layer = 2
-script = ExtResource("2_a8run")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1823542099]
 shape = SubResource("RectangleShape2D_0xm2m")
@@ -77,7 +74,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="freeze_zone" type="Area2D" parent="Camera" unique_id=1562804552]
-position = Vector2(0, 246)
+position = Vector2(0, 267)
 collision_layer = 0
 script = ExtResource("8_th5th")
 
@@ -203,8 +200,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_blune")
 
-[connection signal="first_hit" from="." to="Platform" method="_on_first_hit"]
-[connection signal="first_hit" from="." to="Camera" method="_on_first_hit"]
 [connection signal="game_restarted" from="." to="Camera" method="_on_game_restarted"]
 [connection signal="game_restarted" from="." to="Camera/Spawner" method="_on_game_restarted"]
 [connection signal="height_changed" from="." to="Camera" method="_on_height_changed"]

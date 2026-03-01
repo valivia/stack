@@ -4,7 +4,6 @@ extends Node2D
 
 signal height_changed(height: float);
 signal game_restarted();
-signal first_hit();
 
 # State
 var game_ended:bool = false;
@@ -16,7 +15,7 @@ func _ready():
 	print("Game started");
 
 # Functions
-func end_game(game_over := true):
+func end_game():
 	if (game_ended): return;
 	game_ended = true;
 	get_tree().paused = true;
