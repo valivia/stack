@@ -68,6 +68,10 @@ texture_filter = 1
 position = Vector2(0, -19)
 texture = ExtResource("7_ouso4")
 
+[node name="Timer" type="Timer" parent="Camera/Spawner" unique_id=1341607537]
+wait_time = 1.5
+one_shot = true
+
 [node name="kill_zone" type="Area2D" parent="." unique_id=400276874]
 position = Vector2(0, -66)
 script = ExtResource("4_hujxm")
@@ -194,5 +198,6 @@ texture = ExtResource("12_blune")
 [connection signal="height_changed" from="." to="Camera" method="_on_height_changed"]
 [connection signal="height_changed" from="." to="Score" method="_on_height_changed"]
 [connection signal="height_changed" from="." to="Menu" method="_on_height_changed"]
+[connection signal="timeout" from="Camera/Spawner/Timer" to="Camera/Spawner" method="_on_timer_timeout"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer2/Main Menu" to="Menu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer2/Restart" to="Menu" method="_on_restart_pressed"]

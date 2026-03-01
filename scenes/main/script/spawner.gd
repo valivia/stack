@@ -2,6 +2,7 @@ extends Marker2D
 
 @onready var main = $"../.."
 @onready var tower:Node2D = %Tower;
+@onready var timer = $Timer
 
 # Boxes
 const BOX = preload("uid://b75eev621m460")
@@ -25,6 +26,7 @@ func on_settled(height):
 
 func spawn_new_box():
 	if box != null: return;
+	timer.stop()
 	box = BOXES.pick_random().instantiate();
 	self.add_child(box);
 	box.settled.connect(main.on_box_settled);
@@ -35,8 +37,12 @@ func drop_box():
 	box.reparent(tower, true);
 	box.global_position = self.global_position;
 	box.enable();
+	timer.start();
 	box = null;
 
 
 func _on_game_restarted():
 	if !box: spawn_new_box();
+
+func _on_timer_timeout():
+	spawn_new_box();
