@@ -8,6 +8,7 @@
 points = PackedVector2Array(16, 16, -16, 16, -16, 4, 0, -16, 16, 4)
 
 [node name="Box" type="RigidBody2D" unique_id=114154577 node_paths=PackedStringArray("sprite", "collision", "visible_notifier")]
+mass = 0.75
 physics_material_override = ExtResource("1_qamps")
 freeze = true
 max_contacts_reported = 1

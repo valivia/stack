@@ -8,6 +8,7 @@
 size = Vector2(64, 32)
 
 [node name="Rectangle" type="RigidBody2D" unique_id=114154577 node_paths=PackedStringArray("sprite", "collision", "visible_notifier")]
+mass = 2.0
 physics_material_override = ExtResource("1_ag7wu")
 freeze = true
 linear_damp = 1.0
